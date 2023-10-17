@@ -17,7 +17,7 @@ const docTemplate = `{
     "paths": {
         "/opening": {
             "post": {
-                "description": "Create a new job opening",
+                "description": "Delete a new job opening",
                 "produces": [
                     "application/json"
                 ],
@@ -26,20 +26,18 @@ const docTemplate = `{
                 ],
                 "parameters": [
                     {
-                        "description": "Request body",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/handler.CreateOpeningRequest"
-                        }
+                        "type": "string",
+                        "description": "Opening identification",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handler.CreateOpeningResponse"
+                            "$ref": "#/definitions/handler.DeleteOpeningResponse"
                         }
                     },
                     "400": {
@@ -48,8 +46,8 @@ const docTemplate = `{
                             "$ref": "#/definitions/handler.ErrorResponse"
                         }
                     },
-                    "500": {
-                        "description": "Internal Server Error",
+                    "404": {
+                        "description": "Not Found",
                         "schema": {
                             "$ref": "#/definitions/handler.ErrorResponse"
                         }
@@ -83,6 +81,17 @@ const docTemplate = `{
             }
         },
         "handler.CreateOpeningResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/schemas.OpeningResponse"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.DeleteOpeningResponse": {
             "type": "object",
             "properties": {
                 "data": {

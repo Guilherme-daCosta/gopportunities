@@ -21,6 +21,13 @@ definitions:
       message:
         type: string
     type: object
+  handler.DeleteOpeningResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpeningResponse'
+      message:
+        type: string
+    type: object
   handler.ErrorResponse:
     properties:
       errorCode:
@@ -56,27 +63,26 @@ info:
 paths:
   /opening:
     post:
-      description: Create a new job opening
+      description: Delete a new job opening
       parameters:
-      - description: Request body
-        in: body
-        name: request
+      - description: Opening identification
+        in: query
+        name: id
         required: true
-        schema:
-          $ref: '#/definitions/handler.CreateOpeningRequest'
+        type: string
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handler.CreateOpeningResponse'
+            $ref: '#/definitions/handler.DeleteOpeningResponse'
         "400":
           description: Bad Request
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
-        "500":
-          description: Internal Server Error
+        "404":
+          description: Not Found
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
       tags:
