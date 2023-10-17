@@ -19,7 +19,7 @@ import (
 // @Success 200 {object} DeleteOpeningResponse
 // @Failure 400 {object} ErrorResponse
 // @Failure 404 {object} ErrorResponse
-// @Router /opening [post]
+// @Router /opening [delete]
 func DeleteOpeningHandler(c *gin.Context) {
 	id := c.Query("id")
 	if id == "" {
