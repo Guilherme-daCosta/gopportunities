@@ -6,7 +6,18 @@ import (
 	"github.com/Guilherme-daCosta/gopportunities/schemas"
 	"github.com/gin-gonic/gin"
 )
+// @BasePath /api/v1
 
+// @Sumary Create opening
+// @Description Create a new job opening
+// @Tags openings
+// @Accpet json
+// @Produce json
+// @Param request body CreateOpeningRequest true "Request body"
+// @Success 200 {object} CreateOpeningResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /opening [post]
 func CreateOpeningHandler(c *gin.Context) {
 	request := CreateOpeningRequest{}
 
